@@ -1,4 +1,4 @@
-package com.zipcode.transcurrency.Transcurrency;
+package com.zipcode.transcurrency.Transcurrency.BankAccount;
 
 public class BankAccount {
 
@@ -7,5 +7,6 @@ public class BankAccount {
     private int routingNumber;
     private String bankName;
 
-    
+
+
 }
