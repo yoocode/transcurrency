@@ -1,4 +1,4 @@
-package com.zipcode.transcurrency.Transcurrency.services;
+package com.zipcode.transcurrency.Transcurrency.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
