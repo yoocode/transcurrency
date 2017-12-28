@@ -2,7 +2,7 @@ package com.zipcode.transcurrency.Transcurrency.com.zipcode.transcurrency.models
 
 import java.math.BigDecimal;
 
-public class Transactions {
+public class Transaction {
 
     private Long sourceID;
     private Long destinationID;
@@ -41,15 +41,15 @@ public class Transactions {
         this.accountID = accountID;
     }
 
-    public void send(Long destinationID, Long sourceID, BigDecimal amount) {
-
-    }
-
-    public void request(Long sourceID, Long destinationID, BigDecimal amount, String message) {
-
-    }
-
-    public UserProfile find(Long destinationID) {
-        return new UserProfile();
-    }
+//    public void send(Long destinationID, Long sourceID, BigDecimal amount) {
+//
+//    }
+//
+//    public void request(Long sourceID, Long destinationID, BigDecimal amount, String message) {
+//
+//    }
+//
+//    public UserProfile find(Long destinationID) {
+//        return new UserProfile();
+//    }
 }
