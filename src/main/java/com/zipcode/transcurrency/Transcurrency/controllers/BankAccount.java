@@ -1,4 +1,4 @@
-package com.zipcode.transcurrency.Transcurrency.BankAccount;
+package com.zipcode.transcurrency.Transcurrency.controllers;
 
 public class BankAccount {
 
