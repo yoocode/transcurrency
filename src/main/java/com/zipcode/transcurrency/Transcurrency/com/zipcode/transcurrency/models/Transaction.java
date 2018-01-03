@@ -16,7 +16,7 @@ public class Transaction {
     private Long transactionId;
     private Long sourceAccountId;
     private Long destinationAccountId;
-    
+
 
     public Transaction(){}
     
