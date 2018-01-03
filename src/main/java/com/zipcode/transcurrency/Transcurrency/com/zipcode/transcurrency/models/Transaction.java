@@ -19,10 +19,15 @@ public class Transaction {
 
 
     public Transaction(){}
+
+    public Transaction(Long transactionId) {
+        this.transactionId = transactionId;
+    }
     
-    public Transaction(Long sourceId, Long destinationId, Long sourceAccountId, Long destinationAccountId) {
+    public Transaction(Long sourceId, Long destinationId, Long transactionId, Long sourceAccountId, Long destinationAccountId) {
         this.sourceId = sourceId;
         this.destinationId = destinationId;
+        this.transactionId = transactionId;
         this.sourceAccountId = sourceAccountId;
         this.destinationAccountId = destinationAccountId;
     }

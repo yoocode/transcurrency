@@ -17,6 +17,13 @@ public class TransactionServiceTests {
 
     private TransactionService transactionService;
 
+    private static List<Transaction> transactionList = new ArrayList<>(
+            Arrays.asList(
+                    new Transaction(),
+                    new Transaction(),
+                    new Transaction(),
+                    new Transaction()));
+
     @Mock
     private TransactionRepository transactionRepository;
 
@@ -29,13 +36,6 @@ public class TransactionServiceTests {
     @Test
     public void getAllTransactions() throws Exception {
 
-        List<Transaction> transactionList = new ArrayList<>(
-                Arrays.asList(
-                        new Transaction(),
-                        new Transaction(),
-                        new Transaction(),
-                        new Transaction()));
-
         when(transactionService.getAllTransactions()).thenReturn(transactionList);
         List<Transaction> transactions = transactionService.getAllTransactions();
 
@@ -45,7 +45,11 @@ public class TransactionServiceTests {
     @Test
     public void getTransaction() throws Exception {
 
-        
+        Transaction transaction = new Transaction(1L);
+        when(transactionService.getTransaction(transaction.getId())).thenReturn(transactionList.get(0));
+        Transaction transactionResult = transactionService.getTransaction(transaction.getId());
+
+        assertEquals(transactionResult, 1);
     }
 
 }
