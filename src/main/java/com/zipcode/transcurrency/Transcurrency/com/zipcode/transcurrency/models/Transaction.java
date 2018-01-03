@@ -1,55 +1,97 @@
 package com.zipcode.transcurrency.Transcurrency.com.zipcode.transcurrency.models;
 
-import java.math.BigDecimal;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class Transaction {
 
-    private Long sourceID;
-    private Long destinationID;
-    private Long transactionID;
-    private Long accountID;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-    public Long getSourceID() {
-        return sourceID;
+    private Long sourceId;
+    private Long destinationId;
+    private Long transactionId;
+    private Long sourceAccountId;
+    private Long destinationAccountId;
+    
+
+    public Transaction(){}
+    
+    public Transaction(Long sourceId, Long destinationId, Long sourceAccountId, Long destinationAccountId) {
+        this.sourceId = sourceId;
+        this.destinationId = destinationId;
+        this.sourceAccountId = sourceAccountId;
+        this.destinationAccountId = destinationAccountId;
     }
 
-    public void setSourceID(Long sourceID) {
-        this.sourceID = sourceID;
+    public Long getSourceAccountId() {
+        return sourceAccountId;
     }
 
-    public Long getDestinationID() {
-        return destinationID;
+    public void setSourceAccountId(Long sourceAccountId) {
+        this.sourceAccountId = sourceAccountId;
     }
 
-    public void setDestinationID(Long destinationID) {
-        this.destinationID = destinationID;
+    public Long getDestinationAccountId() {
+        return destinationAccountId;
     }
 
-    public Long getTransactionID() {
-        return transactionID;
+    public void setDestinationAccountId(Long destinationAccountId) {
+        this.destinationAccountId = destinationAccountId;
     }
 
-    public void setTransactionID(Long transactionID) {
-        this.transactionID = transactionID;
+    public Long getId() {
+        return id;
     }
 
-    public Long getAccountID() {
-        return accountID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setAccountID(Long accountID) {
-        this.accountID = accountID;
+    public Long getSourceId() {
+        return sourceId;
     }
 
-//    public void send(Long destinationID, Long sourceID, BigDecimal amount) {
+    public void setSourceId(Long sourceId) {
+        this.sourceId = sourceId;
+    }
+
+    public Long getDestinationId() {
+        return destinationId;
+    }
+
+    public void setDestinationId(Long destinationId) {
+        this.destinationId = destinationId;
+    }
+
+    public Long getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public Long getAccountId() {
+        return sourceAccountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.sourceAccountId = accountId;
+    }
+
+//    public void send(Long destinationId, Long sourceID, BigDecimal amount) {
 //
 //    }
 //
-//    public void request(Long sourceID, Long destinationID, BigDecimal amount, String message) {
+//    public void request(Long sourceID, Long destinationId, BigDecimal amount, String message) {
 //
 //    }
 //
-//    public UserProfile find(Long destinationID) {
+//    public UserProfile find(Long destinationId) {
 //        return new UserProfile();
 //    }
 }
