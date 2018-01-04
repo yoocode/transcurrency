@@ -31,7 +31,12 @@ public class TransactionService {
     }
 
     public Transaction getTransaction(Long id) {
-        return new Transaction();
+       for (Transaction transaction : transactions) {
+           if (transaction.getId() == id) {
+               return transaction;
+           }
+       }
+       return null;
     }
 
 }
