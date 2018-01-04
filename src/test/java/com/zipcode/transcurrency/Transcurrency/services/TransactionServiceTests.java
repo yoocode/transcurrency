@@ -46,10 +46,10 @@ public class TransactionServiceTests {
     public void getTransaction() throws Exception {
 
         Transaction transaction = new Transaction(1L);
-        when(transactionService.getTransaction(transaction.getId())).thenReturn(transactionList.get(0));
+        when(transactionService.getTransaction(1L)).thenReturn(transactionList.get(0));
         Transaction transactionResult = transactionService.getTransaction(transaction.getId());
 
-        assertEquals(transactionResult, 1);
+        assertEquals(transactionResult, 1L);
     }
 
 }
