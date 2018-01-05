@@ -58,4 +58,7 @@ public class BankAccount {
     public void setBankName(String bankName) {
         this.bankName = bankName;
     }
+
+    public void transferTo(BankAccount toBankAccount, double amount) {
+    }
 }

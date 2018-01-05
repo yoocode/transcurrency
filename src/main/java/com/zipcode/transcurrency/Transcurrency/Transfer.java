@@ -1,20 +1,27 @@
 package com.zipcode.transcurrency.Transcurrency;
 
+import com.zipcode.transcurrency.Transcurrency.models.BankAccount;
+
 import java.math.BigDecimal;
 
 public class Transfer {
 
-    private bankAccount //field for instantiating bank account object
-    private BigDecimal amount
+    private BankAccount toBankAccount; //field for instantiating bank account object
+    private BigDecimal amount;
 
-    public void withdraw(bankAccount, amount){
+    public Transfer(BankAccount toBankAccount, BigDecimal amount) {
+        this.toBankAccount = toBankAccount;
+        this.amount = amount;
+    }
 
+    public void withdraw(BankAccount fromBankAccount) {
+//        toBankAccount.withdrawal(amount)
         //request money from bank account, or credit card
         //update balance accordingly
     }
 
-    public void deposit(bankAccount, amount){
-
+    public void deposit() {
+//        toBankAccount.deposit(amount)
         //send money from app to bank account
         //uodate balance
     }
