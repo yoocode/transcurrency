@@ -45,9 +45,9 @@ public class TransactionServiceTests {
     @Test
     public void getTransaction() throws Exception {
 
-        Transaction transaction = new Transaction(1L);
+
         when(transactionService.getTransaction(1L)).thenReturn(transactionList.get(0));
-        Transaction transactionResult = transactionService.getTransaction(transaction.getId());
+        Transaction transactionResult = transactionService.getTransaction(1L);
 
         assertEquals(transactionResult, 1L);
     }
