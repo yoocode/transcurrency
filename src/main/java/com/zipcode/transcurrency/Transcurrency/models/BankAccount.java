@@ -1,16 +1,14 @@
 package com.zipcode.transcurrency.Transcurrency.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class BankAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    //@Column(name = "BANK_ACCT_ID")
     private long id;
     private int accountNumber;
     private int routingNumber;
