@@ -3,7 +3,9 @@ import com.zipcode.transcurrency.Transcurrency.com.zipcode.transcurrency.models.
 import com.zipcode.transcurrency.Transcurrency.repositories.TransactionRepository;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
@@ -11,18 +13,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
 
 public class TransactionServiceTests {
 
+    @InjectMocks
     private TransactionService transactionService;
-
-    private static List<Transaction> transactionList = new ArrayList<>(
-            Arrays.asList(
-                    new Transaction(),
-                    new Transaction(),
-                    new Transaction(),
-                    new Transaction()));
 
     @Mock
     private TransactionRepository transactionRepository;
@@ -30,26 +25,32 @@ public class TransactionServiceTests {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        transactionService = new TransactionService(transactionRepository);
+        Mockito.when(transactionRepository.findAll())
+                .thenReturn(
+                        new ArrayList<>(
+                                Arrays.asList(
+                                        new Transaction(),
+                                        new Transaction())));
+        Mockito.when(transactionRepository.findOne(1L))
+                .thenReturn(new Transaction());
     }
 
     @Test
     public void getAllTransactions() throws Exception {
 
-        when(transactionService.getAllTransactions()).thenReturn(transactionList);
         List<Transaction> transactions = transactionService.getAllTransactions();
 
-        assertEquals(transactions.size(), 4);
+        assertEquals(transactions.size(), 2);
     }
 
     @Test
     public void getTransaction() throws Exception {
 
+        Transaction actual = new Transaction();
 
-        when(transactionService.getTransaction(1L)).thenReturn(transactionList.get(0));
         Transaction transactionResult = transactionService.getTransaction(1L);
 
-        assertEquals(transactionResult, 1L);
+        assertEquals(transactionResult, actual);
     }
 
 }

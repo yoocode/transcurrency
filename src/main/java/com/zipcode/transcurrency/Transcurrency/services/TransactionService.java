@@ -11,32 +11,24 @@ import java.util.List;
 @Service
 public class TransactionService {
 
-    private static List<Transaction> transactions = new ArrayList<>(
-            Arrays.asList(
-                    new Transaction(),
-                    new Transaction(),
-                    new Transaction(),
-                    new Transaction()));
-
     private TransactionRepository transactionRepository;
 
     public TransactionService(TransactionRepository transactionRepository) {
+
         this.transactionRepository = transactionRepository;
+
     }
 
     public List<Transaction> getAllTransactions() {
-        transactionRepository.findAll()
-                .forEach(transactions::add);
-        return transactions;
+
+        return transactionRepository.findAll();
+
     }
 
     public Transaction getTransaction(Long id) {
-       for (Transaction transaction : transactions) {
-           if (transaction.getId() == id) {
-               return transaction;
-           }
-       }
-       return null;
+
+       return transactionRepository.findOne(id);
+
     }
 
 }

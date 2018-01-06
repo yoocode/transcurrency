@@ -3,6 +3,7 @@ package com.zipcode.transcurrency.Transcurrency.com.zipcode.transcurrency.models
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class Transaction {
@@ -88,7 +89,25 @@ public class Transaction {
         this.sourceAccountId = accountId;
     }
 
-//    public void send(Long destinationId, Long sourceID, BigDecimal amount) {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(sourceId, that.sourceId) &&
+                Objects.equals(destinationId, that.destinationId) &&
+                Objects.equals(transactionId, that.transactionId) &&
+                Objects.equals(sourceAccountId, that.sourceAccountId) &&
+                Objects.equals(destinationAccountId, that.destinationAccountId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, sourceId, destinationId, transactionId, sourceAccountId, destinationAccountId);
+    }
+
+    //    public void send(Long destinationId, Long sourceID, BigDecimal amount) {
 //
 //    }
 //
