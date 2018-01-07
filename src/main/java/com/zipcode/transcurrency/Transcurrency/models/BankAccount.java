@@ -9,7 +9,7 @@ public class BankAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     //@Column(name = "BANK_ACCT_ID")
-    private long id;
+    private Long bankAccountId;
     private int accountNumber;
     private int routingNumber;
     private String bankName;
@@ -18,19 +18,19 @@ public class BankAccount {
 
     }
 
-    public BankAccount(Long id, int accountNumber, int routingNumber, String bankName){
-        this.id = id;
+    public BankAccount(Long bankAccountId, int accountNumber, int routingNumber, String bankName){
+        this.bankAccountId = bankAccountId;
         this.accountNumber = accountNumber;
         this.routingNumber = routingNumber;
         this.bankName = bankName;
     }
 
-    public long getId() {
-        return id;
+    public long getBankAccountId() {
+        return bankAccountId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setBankAccountId(Long bankAccountId) {
+        this.bankAccountId = bankAccountId;
     }
 
     public int getAccountNumber() {
