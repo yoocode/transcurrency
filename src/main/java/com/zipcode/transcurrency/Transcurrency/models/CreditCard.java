@@ -11,7 +11,7 @@ public class CreditCard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long creditCardId;
     private String cardName;
     private int cardNumber;
     private String expDate;
@@ -21,8 +21,8 @@ public class CreditCard {
 
     }
 
-    public CreditCard(Long id, String cardName, int cardNumber, String expDate, int cvv){
-        this.id = id;
+    public CreditCard(Long CreditCardId, String cardName, int cardNumber, String expDate, int cvv){
+        this.creditCardId = CreditCardId;
         this.cardName = cardName;
         this.cardNumber = cardNumber;
         this.expDate = expDate;
@@ -30,12 +30,12 @@ public class CreditCard {
 
     }
 
-    public Long getId() {
-        return id;
+    public Long getCreditCardIdId() {
+        return creditCardId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long CreditCardId) {
+        this.creditCardId = CreditCardId;
     }
 
     public String getCardName() {
