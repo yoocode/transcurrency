@@ -21,9 +21,13 @@ public class User {
 
     //set balance to zero when user instance is created
     public User(String name, String username) {
+        this(name, username, BigDecimal.ZERO);
+    }
+
+    public User(String name, String username, BigDecimal balance) {
         this.name = name;
         this.username = username;
-        this.balance = BigDecimal.ZERO;
+        this.balance = balance;
     }
 
     public Long getId() {

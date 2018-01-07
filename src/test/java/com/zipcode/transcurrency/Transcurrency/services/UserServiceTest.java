@@ -10,7 +10,11 @@ import org.mockito.MockitoAnnotations;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.isNotNull;
 import static org.mockito.Mockito.when;
 
 public class UserServiceTest {
@@ -27,7 +31,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void getAllUsers() throws Exception {
+    public void getAllUsersTest() throws Exception {
 
         User user1 = new User();
         List<User> userData = new ArrayList<>();
@@ -38,12 +42,30 @@ public class UserServiceTest {
 
         assertEquals(users.size(), 1);
     }
+/*
+    public void addUser(User user){
+        userRepository.save(user);
+    }
+ */
+
+    @Test(expected = RuntimeException.class)
+    public void addUserTest() throws Exception {
+
+        when(userRepository.save(any(User.class))).thenThrow(RuntimeException.class);
+
+        User usertest = new User();
+
+        userService.addUser(usertest);
+
+    }
 
     @Test
-    public void addUser() throws Exception {
-        User user = new User();
+    public void addUserWithVerificationTest() throws Exception{
 
+        when(userRepository.save(any(User.class))).thenReturn(new User());
+        User user1 = new User();
 
+        assertThat(userService.addUserWithVerification(user1), is(notNullValue()));
     }
 
     @Test

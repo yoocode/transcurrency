@@ -27,6 +27,14 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public boolean addUserWithVerification(User user){
+        if(userRepository.equals(user)){
+            return false;
+        }
+        userRepository.save(user);
+        return true;
+    }
+
     public void deleteUser(User user){
         userRepository.delete(user);
     }

@@ -8,12 +8,12 @@ import static org.junit.Assert.*;
 
 public class UserTest {
 
-    User user1;
+    User user1 = new User();
 
-    @Before
-    public void setUp() throws Exception {
-        user1 = new User();
-    }
+//    @Before
+//    public void setUp() throws Exception {
+//        user1 = new User();
+//    }
 
     @Test
     public void getId() throws Exception {
