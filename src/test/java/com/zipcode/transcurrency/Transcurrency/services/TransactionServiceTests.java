@@ -25,18 +25,17 @@ public class TransactionServiceTests {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        Mockito.when(transactionRepository.findAll())
-                .thenReturn(
-                        new ArrayList<>(
-                                Arrays.asList(
-                                        new Transaction(),
-                                        new Transaction())));
-        Mockito.when(transactionRepository.findOne(1L))
-                .thenReturn(new Transaction());
     }
 
     @Test
     public void getAllTransactions() throws Exception {
+        List<Transaction> transactionList = new ArrayList<>(
+                Arrays.asList(
+                        new Transaction(),
+                        new Transaction()));
+
+        Mockito.when(transactionRepository.findAll())
+                .thenReturn(transactionList);
 
         List<Transaction> transactions = transactionService.getAllTransactions();
 
@@ -45,12 +44,15 @@ public class TransactionServiceTests {
 
     @Test
     public void getTransaction() throws Exception {
+        Long id = 1L;
+        Transaction transactionResult = new Transaction();
 
-        Transaction actual = new Transaction();
+        Mockito.when(transactionRepository.findOne(id))
+                .thenReturn(transactionResult);
 
-        Transaction transactionResult = transactionService.getTransaction(1L);
+        Transaction transaction = transactionService.getTransaction(1L);
 
-        assertEquals(transactionResult, actual);
+        assertEquals(transaction, transactionResult);
     }
 
 }
