@@ -28,7 +28,7 @@ public class TransactionServiceTests {
     }
 
     @Test
-    public void getAllTransactions() throws Exception {
+    public void getAllTransactionsTest() throws Exception {
         List<Transaction> transactionList = new ArrayList<>(
                 Arrays.asList(
                         new Transaction(),
@@ -43,16 +43,20 @@ public class TransactionServiceTests {
     }
 
     @Test
-    public void getTransaction() throws Exception {
+    public void getTransactionTest() throws Exception {
         Long id = 1L;
         Transaction transactionResult = new Transaction();
 
         Mockito.when(transactionRepository.findOne(id))
                 .thenReturn(transactionResult);
 
-        Transaction transaction = transactionService.getTransaction(1L);
+        Transaction transaction = transactionService.getTransactionById(1L);
 
         assertEquals(transaction, transactionResult);
     }
 
+    @Test
+    public void saveTransactionTest() throws Exception {
+        
+    }
 }

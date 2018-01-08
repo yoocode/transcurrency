@@ -25,10 +25,13 @@ public class TransactionService {
 
     }
 
-    public Transaction getTransaction(Long id) {
+    public Transaction getTransactionById(Long id) {
 
        return transactionRepository.findOne(id);
 
     }
 
+    public void saveTransaction(Transaction transaction) {
+
+    }
 }
