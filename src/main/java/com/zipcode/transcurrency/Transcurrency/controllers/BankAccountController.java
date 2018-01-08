@@ -24,12 +24,12 @@ public class BankAccountController {
     }
 
     //creates a bank account object
-    @RequestMapping(value = "/bankAccounts", method = RequestMethod.POST)
-    public ResponseEntity<?> createBankAccount(@RequestBody BankAccount bankAccount){
-        //add logic
-    }
+//    @RequestMapping(value = "/bankAccounts", method = RequestMethod.POST)
+//    public ResponseEntity<?> createBankAccount(@RequestBody BankAccount bankAccount){
+//        //add logic
+//    }
 
-    //get a credit card
+    //get a bank account
     @RequestMapping(value = "/bankAccounts/{bankAccountId}", method = RequestMethod.GET)
     public ResponseEntity<?> getBankAccount(@PathVariable Long bankAccountId){
         BankAccount bankAccount = bankAccountRepository.findOne(bankAccountId);
@@ -38,12 +38,12 @@ public class BankAccountController {
 
     //update a bank account
     @RequestMapping(value = "/bankAccounts/{bankAccountId}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateCreditCard(@RequestBody BankAccount bankAccount, @PathVariable Long bankAccountId){
+    public ResponseEntity<?> updateBankAccount(@RequestBody BankAccount bankAccount, @PathVariable Long bankAccountId){
         BankAccount account = bankAccountRepository.save(bankAccount);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    //delete a credit card
+    //delete a bank account
     @RequestMapping(value = "/bankAccounts/{bankAccountId}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteBankAccount(@PathVariable Long bankAccountId){
         bankAccountRepository.delete(bankAccountId);

@@ -24,10 +24,10 @@ public class CreditCardController {
     }
 
     //creates credit cards
-    @RequestMapping(value = "/creditCards", method = RequestMethod.POST)
-    public ResponseEntity<?> createCreditCard(@RequestBody CreditCard creditCard){
-        //add logic
-    }
+//    @RequestMapping(value = "/creditCards", method = RequestMethod.POST)
+//    public ResponseEntity<?> createCreditCard(@RequestBody CreditCard creditCard){
+//        //add logic
+//    }
 
     //gets a credit card
     @RequestMapping(value = "/creditCards/{creditCardId}", method = RequestMethod.GET)
@@ -36,7 +36,7 @@ public class CreditCardController {
         return new ResponseEntity<>(card, HttpStatus.OK);
     }
 
-    //update a credit card
+    //update a credit card. May not be needed
     @RequestMapping(value = "/creditCards/{creditCardId}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateCreditCard(@RequestBody CreditCard creditCard, @PathVariable Long creditCardId){
         CreditCard card = creditCardRepository.save(creditCard);

@@ -1,9 +1,12 @@
 package com.zipcode.transcurrency.Transcurrency.modelsTests;
 
 import com.zipcode.transcurrency.Transcurrency.models.BankAccount;
+import org.junit.Test;
 
 public class BankAccountTest {
-    public void testTransfer() {
+
+    @Test
+    public void testTransferTo() {
         BankAccount fromBankAccount = new BankAccount();
         BankAccount toBankAccount = new BankAccount();
         double amount = 0;
@@ -12,4 +15,6 @@ public class BankAccountTest {
 
 
     }
+
+
 }
