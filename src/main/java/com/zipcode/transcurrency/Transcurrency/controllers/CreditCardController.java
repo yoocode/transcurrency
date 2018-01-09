@@ -3,6 +3,8 @@ package com.zipcode.transcurrency.Transcurrency.controllers;
 
 import com.zipcode.transcurrency.Transcurrency.models.CreditCard;
 import com.zipcode.transcurrency.Transcurrency.repositories.CreditCardRepository;
+import com.zipcode.transcurrency.Transcurrency.services.CreditCardService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,15 +18,27 @@ import java.net.URI;
 @RestController
 public class CreditCardController {
 
-    @Inject
-    private CreditCardRepository creditCardRepository;
+    private CreditCardService creditCardService;
+
+
+    public CreditCardController() {
+
+    }
+
+    @Autowired
+    public CreditCardController(CreditCardService creditCardService) {
+        this.creditCardService = creditCardService;
+    }
+
+
+    /////////////////////////
+
 
     //gets all the credit cards
     @RequestMapping(value = "/creditCards", method = RequestMethod.GET)
     public ResponseEntity<Iterable<CreditCard>> getAllCreditCards() {
 
-        Iterable<CreditCard> allCreditCards = creditCardRepository.findAll();
-        return new ResponseEntity<>(allCreditCards, HttpStatus.OK);
+        return creditCardService.getAllCreditCards();
     }
 
 
@@ -32,17 +46,7 @@ public class CreditCardController {
     @RequestMapping(value = "/creditCards", method = RequestMethod.POST)
     public ResponseEntity<?> createCreditCard(@RequestBody CreditCard creditCard){
 
-        creditCard = creditCardRepository.save(creditCard);
-
-        HttpHeaders responseHeaders = new HttpHeaders();
-        URI newCreditCardURI = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{creditCardId}")
-                .buildAndExpand(creditCard.getCreditCardId())
-                .toUri();
-        responseHeaders.setLocation(newCreditCardURI);
-
-        return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
+        return creditCardService.createCreditCard(creditCard);
     }
 
 
@@ -50,8 +54,7 @@ public class CreditCardController {
     @RequestMapping(value = "/creditCards/{creditCardId}", method = RequestMethod.GET)
     public ResponseEntity<?> getCreditCard(@PathVariable Long creditCardId){
 
-        CreditCard card = creditCardRepository.findOne(creditCardId);
-        return new ResponseEntity<>(card, HttpStatus.OK);
+        return creditCardService.getCreditCard(creditCardId);
     }
 
 
@@ -59,8 +62,8 @@ public class CreditCardController {
     @RequestMapping(value = "/creditCards/{creditCardId}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateCreditCard(@RequestBody CreditCard creditCard, @PathVariable Long creditCardId){
 
-        CreditCard card = creditCardRepository.save(creditCard);
-        return new ResponseEntity<>(HttpStatus.OK);
+
+        return creditCardService.updateCreditCard(creditCard, creditCardId);
     }
 
 
