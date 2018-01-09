@@ -3,10 +3,8 @@ package com.zipcode.transcurrency.Transcurrency.controllers;
 import com.zipcode.transcurrency.Transcurrency.models.User;
 import com.zipcode.transcurrency.Transcurrency.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.method.P;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,9 +30,14 @@ public class UserController {
         userService.addUser(user);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/users")
-    public void deleteUser(@RequestBody User user){
-        userService.deleteUser(user);
+    @RequestMapping(method = RequestMethod.DELETE, value = "/users/{id:[0-9]+}")
+    public void deleteUser(@PathVariable("id") Long id){
+        userService.deleteUser(id);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/users/{name:[a-zA-Z]+}")
+    public void deleteUser(@PathVariable("name") String name){
+        userService.deleteUser(name);
     }
 
 }

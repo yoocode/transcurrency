@@ -35,7 +35,21 @@ public class UserService {
         return true;
     }
 
-    public void deleteUser(User user){
-        userRepository.delete(user);
+    public void deleteUser(Long id){
+        userRepository.delete(id);
     }
+
+    public void deleteUser(String name){
+
+        List<User> userList = new ArrayList<>();
+        userList = userRepository.findAll();
+
+        for(User user: userList){
+            if(user.getName().equals(name)){
+                userRepository.delete(user.getId());
+//                userList.remove(user);
+                break;
+            }
+        }
+        }
 }
