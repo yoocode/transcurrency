@@ -20,7 +20,6 @@ public class CreditCardController {
 
     private CreditCardService creditCardService;
 
-
     public CreditCardController() {
 
     }
@@ -30,46 +29,33 @@ public class CreditCardController {
         this.creditCardService = creditCardService;
     }
 
-
-    /////////////////////////
-
-
     //gets all the credit cards
     @RequestMapping(value = "/creditCards", method = RequestMethod.GET)
     public ResponseEntity<Iterable<CreditCard>> getAllCreditCards() {
-
         return creditCardService.getAllCreditCards();
     }
-
 
     //creates credit cards
     @RequestMapping(value = "/creditCards", method = RequestMethod.POST)
     public ResponseEntity<?> createCreditCard(@RequestBody CreditCard creditCard) {
-
         return creditCardService.createCreditCard(creditCard);
     }
-
 
     //gets a credit card
     @RequestMapping(value = "/creditCards/{creditCardId}", method = RequestMethod.GET)
     public ResponseEntity<?> getCreditCard(@PathVariable Long creditCardId) {
-
         return creditCardService.getCreditCard(creditCardId);
     }
-
 
     //update a credit card. May not be needed
     @RequestMapping(value = "/creditCards/{creditCardId}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateCreditCard(@RequestBody CreditCard creditCard, @PathVariable Long creditCardId) {
-
         return creditCardService.updateCreditCard(creditCard, creditCardId);
     }
-
 
     //delete a credit card
     @RequestMapping(value = "/creditCards/{creditCardId}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteCreditCard(@PathVariable Long creditCardId) {
-
         return creditCardService.deleteCreditCard(creditCardId);
     }
 
