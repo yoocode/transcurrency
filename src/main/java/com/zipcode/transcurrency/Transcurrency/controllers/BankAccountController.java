@@ -3,6 +3,8 @@ package com.zipcode.transcurrency.Transcurrency.controllers;
 
 import com.zipcode.transcurrency.Transcurrency.models.BankAccount;
 import com.zipcode.transcurrency.Transcurrency.repositories.BankAccountRepository;
+import com.zipcode.transcurrency.Transcurrency.services.BankAccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,16 +17,25 @@ import java.net.URI;
 @RestController
 public class BankAccountController {
 
-    @Inject
-    private BankAccountRepository bankAccountRepository;
+
+    private BankAccountService bankAccountService;
+
+
+    public BankAccountController() {
+
+    }
+
+    @Autowired
+    public BankAccountController(BankAccountService bankAccountService) {
+        this.bankAccountService = bankAccountService;
+    }
 
 
     //gets all bank accounts
     @RequestMapping(value = "/bankAccounts", method = RequestMethod.GET)
     public ResponseEntity<Iterable<BankAccount>> getAllBankAccounts() {
 
-        Iterable<BankAccount> allBankAccounts = bankAccountRepository.findAll();
-        return new ResponseEntity<>(allBankAccounts, HttpStatus.OK);
+        return bankAccountService.getAllBankAccounts();
     }
 
 
@@ -32,18 +43,7 @@ public class BankAccountController {
     @RequestMapping(value = "/bankAccounts", method = RequestMethod.POST)
     public ResponseEntity<?> createBankAccount(@RequestBody BankAccount bankAccount){
 
-        bankAccount = bankAccountRepository.save(bankAccount);
-
-        HttpHeaders responseHeaders = new HttpHeaders();
-        URI newBankAccountURI = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{bankAccountId}")
-                .buildAndExpand(bankAccount.getBankAccountId())
-                .toUri();
-        responseHeaders.setLocation(newBankAccountURI);
-
-        return new ResponseEntity<>( null, responseHeaders, HttpStatus.CREATED);
-
+        return bankAccountService.createBankAccount(bankAccount);
     }
 
 
@@ -51,8 +51,7 @@ public class BankAccountController {
     @RequestMapping(value = "/bankAccounts/{bankAccountId}", method = RequestMethod.GET)
     public ResponseEntity<?> getBankAccount(@PathVariable Long bankAccountId){
 
-        BankAccount bankAccount = bankAccountRepository.findOne(bankAccountId);
-        return new ResponseEntity<>(bankAccount, HttpStatus.OK);
+        return bankAccountService.getBankAccount(bankAccountId);
     }
 
 
@@ -60,8 +59,7 @@ public class BankAccountController {
     @RequestMapping(value = "/bankAccounts/{bankAccountId}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateBankAccount(@RequestBody BankAccount bankAccount, @PathVariable Long bankAccountId){
 
-        BankAccount account = bankAccountRepository.save(bankAccount);
-        return new ResponseEntity<>(account, HttpStatus.OK);
+        return bankAccountService.updateBankAccount(bankAccount, bankAccountId);
     }
 
 
@@ -69,8 +67,7 @@ public class BankAccountController {
     @RequestMapping(value = "/bankAccounts/{bankAccountId}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteBankAccount(@PathVariable Long bankAccountId){
 
-        bankAccountRepository.delete(bankAccountId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return bankAccountService.deleteBankAccount(bankAccountId);
     }
 
 }
