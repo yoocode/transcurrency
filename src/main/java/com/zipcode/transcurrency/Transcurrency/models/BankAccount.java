@@ -11,13 +11,13 @@ public class BankAccount {
     @Column(name = "BANK_ACCOUNT_ID")
     private Long bankAccountId;
 
-    @Column(name = "ACCOUNT_NUMBER")
+    @JoinColumn(name = "ACCOUNT_NUMBER")
     private int accountNumber;
 
-    @Column(name = "ROUTING_NUMBER")
+    //@Column(name = "ROUTING_NUMBER")
     private int routingNumber;
 
-    @Column(name = "BANK_NAME")
+    //@Column(name = "BANK_NAME")
     private String bankName;
 
 

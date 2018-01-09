@@ -61,7 +61,7 @@ public class BankAccountController {
     public ResponseEntity<?> updateBankAccount(@RequestBody BankAccount bankAccount, @PathVariable Long bankAccountId){
 
         BankAccount account = bankAccountRepository.save(bankAccount);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(account, HttpStatus.OK);
     }
 
 
