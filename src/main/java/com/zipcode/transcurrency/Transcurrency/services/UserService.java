@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 @Service
 public class UserService {
@@ -14,6 +16,20 @@ public class UserService {
 
     public UserService(IUserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    public User getUser(Long id){
+        return userRepository.findOne(id);
+    }
+
+    public User getUser(String name){
+        User user1 = userRepository.findAll()
+                .stream()
+                .filter(user -> name.equals(user.getName()))
+                .findAny()
+                .orElse(null);
+
+        return user1;
     }
 
     public List<User> getAllUsers(){

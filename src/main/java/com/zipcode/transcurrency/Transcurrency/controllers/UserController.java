@@ -25,6 +25,16 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/users/{id:[0-9]+}")
+    public User getUser (@PathVariable("id") Long id){
+        return userService.getUser(id);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/users/{name:[a-zA-Z]+}")
+    public User getUser (@PathVariable("name") String name){
+        return userService.getUser(name);
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "/users")
     public void addUser(@RequestBody User user){
         userService.addUser(user);
