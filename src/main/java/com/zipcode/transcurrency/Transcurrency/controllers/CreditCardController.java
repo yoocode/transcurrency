@@ -44,7 +44,7 @@ public class CreditCardController {
 
     //creates credit cards
     @RequestMapping(value = "/creditCards", method = RequestMethod.POST)
-    public ResponseEntity<?> createCreditCard(@RequestBody CreditCard creditCard){
+    public ResponseEntity<?> createCreditCard(@RequestBody CreditCard creditCard) {
 
         return creditCardService.createCreditCard(creditCard);
     }
@@ -52,7 +52,7 @@ public class CreditCardController {
 
     //gets a credit card
     @RequestMapping(value = "/creditCards/{creditCardId}", method = RequestMethod.GET)
-    public ResponseEntity<?> getCreditCard(@PathVariable Long creditCardId){
+    public ResponseEntity<?> getCreditCard(@PathVariable Long creditCardId) {
 
         return creditCardService.getCreditCard(creditCardId);
     }
@@ -60,8 +60,7 @@ public class CreditCardController {
 
     //update a credit card. May not be needed
     @RequestMapping(value = "/creditCards/{creditCardId}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateCreditCard(@RequestBody CreditCard creditCard, @PathVariable Long creditCardId){
-
+    public ResponseEntity<?> updateCreditCard(@RequestBody CreditCard creditCard, @PathVariable Long creditCardId) {
 
         return creditCardService.updateCreditCard(creditCard, creditCardId);
     }
@@ -69,10 +68,9 @@ public class CreditCardController {
 
     //delete a credit card
     @RequestMapping(value = "/creditCards/{creditCardId}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteCreditCard(@PathVariable Long creditCardId){
+    public ResponseEntity<?> deleteCreditCard(@PathVariable Long creditCardId) {
 
-        creditCardRepository.delete(creditCardId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return creditCardService.deleteCreditCard(creditCardId);
     }
 
 }

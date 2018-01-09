@@ -35,7 +35,7 @@ public class CreditCardService {
 
 
     //creates a credit card
-    public ResponseEntity<?> createCreditCard(CreditCard creditCard){
+    public ResponseEntity<?> createCreditCard(CreditCard creditCard) {
 
         creditCard = creditCardRepository.save(creditCard);
 
@@ -52,7 +52,7 @@ public class CreditCardService {
 
 
     //gets a single credit card
-    public ResponseEntity<?> getCreditCard(Long creditCardId){
+    public ResponseEntity<?> getCreditCard(Long creditCardId) {
 
         CreditCard card = creditCardRepository.findOne(creditCardId);
         return new ResponseEntity<>(card, HttpStatus.OK);
@@ -60,9 +60,17 @@ public class CreditCardService {
 
 
     //updates credit card info
-    public ResponseEntity<?> updateCreditCard(CreditCard creditCard, Long creditCardId){
+    public ResponseEntity<?> updateCreditCard(CreditCard creditCard, Long creditCardId) {
 
         CreditCard card = creditCardRepository.save(creditCard);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+    //deletes a credit card
+    public ResponseEntity<?> deleteCreditCard(Long creditCardId) {
+
+        creditCardRepository.delete(creditCardId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
