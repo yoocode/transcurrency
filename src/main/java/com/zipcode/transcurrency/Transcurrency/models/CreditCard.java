@@ -1,17 +1,17 @@
 package com.zipcode.transcurrency.Transcurrency.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class CreditCard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "CREDIT_CARD_ID")
     private Long creditCardId;
+
+    @JoinColumn(name = "CARD_NAME")
     private String cardName;
     private int cardNumber;
     private String expDate;
@@ -30,7 +30,7 @@ public class CreditCard {
 
     }
 
-    public Long getCreditCardIdId() {
+    public Long getCreditCardId() {
         return creditCardId;
     }
 
