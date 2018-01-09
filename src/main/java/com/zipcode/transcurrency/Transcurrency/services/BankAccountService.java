@@ -13,27 +13,30 @@ import java.util.List;
 @Service
 public class BankAccountService {
 
-    private BankAccountRepository bankAccountRepository;
 
-    public BankAccountService(BankAccountRepository bankAccountRepository) {
-
-        this.bankAccountRepository = bankAccountRepository;
-    }
-
-    public List<BankAccount> getAllBankAccounts() {
-        List<BankAccount> allBankAccounts = new ArrayList();
-        bankAccountRepository.findAll()
-                .forEach(allBankAccounts::add);
-        return allBankAccounts;
-    }
-
-    public ResponseEntity<?> updateBankAccount() {
-        return null;
-    }
-
-    public ResponseEntity<?> deleteBankAccount() {
-        return null;
-    }
+//    private BankAccountRepository bankAccountRepository;
+//
+//
+//    public BankAccountService(BankAccountRepository bankAccountRepository) {
+//
+//        this.bankAccountRepository = bankAccountRepository;
+//    }
+//
+//
+//    public List<BankAccount> getAllBankAccounts() {
+//
+//
+//    }
+//
+//
+//    public ResponseEntity<?> updateBankAccount() {
+//        return null;
+//    }
+//
+//
+//    public ResponseEntity<?> deleteBankAccount() {
+//        return null;
+//    }
 
 
 

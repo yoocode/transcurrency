@@ -8,11 +8,18 @@ public class BankAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //@Column(name = "BANK_ACCT_ID")
+    @Column(name = "BANK_ACCOUNT_ID")
     private Long bankAccountId;
+
+    @Column(name = "ACCOUNT_NUMBER")
     private int accountNumber;
+
+    @Column(name = "ROUTING_NUMBER")
     private int routingNumber;
+
+    @Column(name = "BANK_NAME")
     private String bankName;
+
 
     public BankAccount(){
 
