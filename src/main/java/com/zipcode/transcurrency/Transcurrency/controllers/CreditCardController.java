@@ -2,17 +2,12 @@ package com.zipcode.transcurrency.Transcurrency.controllers;
 
 
 import com.zipcode.transcurrency.Transcurrency.models.CreditCard;
-import com.zipcode.transcurrency.Transcurrency.repositories.CreditCardRepository;
 import com.zipcode.transcurrency.Transcurrency.services.CreditCardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.inject.Inject;
-import java.net.URI;
+
 
 
 @RestController

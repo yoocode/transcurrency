@@ -10,7 +10,7 @@ public class UserTest {
 
     User user1 = new User();
 
-//    @Before
+ //   @Before
 //    public void setUp() throws Exception {
 //        user1 = new User();
 //    }
