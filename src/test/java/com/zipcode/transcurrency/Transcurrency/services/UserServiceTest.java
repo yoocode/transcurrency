@@ -15,6 +15,7 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.isNotNull;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 public class UserServiceTest {
@@ -42,11 +43,6 @@ public class UserServiceTest {
 
         assertEquals(users.size(), 1);
     }
-/*
-    public void addUser(User user){
-        userRepository.save(user);
-    }
- */
 
     @Test(expected = RuntimeException.class)
     public void addUserTest() throws Exception {
@@ -69,8 +65,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void deleteUser() throws Exception {
-
+    public void deleteUserById() throws Exception {
     }
 
 }
