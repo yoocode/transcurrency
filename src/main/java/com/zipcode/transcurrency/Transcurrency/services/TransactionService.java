@@ -27,11 +27,19 @@ public class TransactionService {
 
     public Transaction getTransactionById(Long id) {
 
-       return transactionRepository.findOne(id);
+        if(transactionRepository.findOne(id) == null) {
+            return null;
+        }
+
+        return transactionRepository.findOne(id);
 
     }
 
     public void saveTransaction(Transaction transaction) {
+
+        if(transaction != null) {
+            transactionRepository.save(transaction);
+        }
 
     }
 }

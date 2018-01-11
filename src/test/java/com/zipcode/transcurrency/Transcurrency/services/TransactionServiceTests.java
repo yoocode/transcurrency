@@ -1,18 +1,21 @@
 package com.zipcode.transcurrency.Transcurrency.services;
+
 import com.zipcode.transcurrency.Transcurrency.com.zipcode.transcurrency.models.Transaction;
 import com.zipcode.transcurrency.Transcurrency.repositories.TransactionRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 public class TransactionServiceTests {
 
@@ -34,7 +37,7 @@ public class TransactionServiceTests {
                         new Transaction(),
                         new Transaction()));
 
-        Mockito.when(transactionRepository.findAll())
+        when(transactionRepository.findAll())
                 .thenReturn(transactionList);
 
         List<Transaction> transactions = transactionService.getAllTransactions();
@@ -47,16 +50,24 @@ public class TransactionServiceTests {
         Long id = 1L;
         Transaction transactionResult = new Transaction();
 
-        Mockito.when(transactionRepository.findOne(id))
+        when(transactionRepository.findOne(id))
                 .thenReturn(transactionResult);
 
         Transaction transaction = transactionService.getTransactionById(1L);
 
-        assertEquals(transaction, transactionResult);
+        assertThat(transaction, is(notNullValue()));
     }
 
     @Test
     public void saveTransactionTest() throws Exception {
-        
+        Transaction savedTransaction = new Transaction();
+
+        transactionService.saveTransaction(savedTransaction);
+
+        assertNotNull(savedTransaction.getId());
+
+        savedTransaction.setId(1L);
+
+
     }
 }
