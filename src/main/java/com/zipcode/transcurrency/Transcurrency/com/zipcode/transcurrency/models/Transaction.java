@@ -13,7 +13,13 @@ public class Transaction {
     @GeneratedValue
     private Long id;
 
+    private Transfer transfer;
+
     public Transaction(){}
+
+    public Transaction(Transfer transfer){
+        this.transfer = transfer;
+    }
 
     public Long getId() {
         return id;
