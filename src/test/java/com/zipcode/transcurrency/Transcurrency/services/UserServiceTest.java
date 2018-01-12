@@ -2,8 +2,9 @@ package com.zipcode.transcurrency.Transcurrency.services;
 
 import com.zipcode.transcurrency.Transcurrency.models.User;
 import com.zipcode.transcurrency.Transcurrency.repositories.IUserRepository;
-import org.junit.Test;
 import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -15,19 +16,36 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class UserServiceTest {
-
-    private UserService userService;
 
     @Mock
     private IUserRepository userRepository;
 
+    //Mock instance of UserService
+    @InjectMocks
+    private UserService userService;
+
+//    Another way of generating mock instance
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        userService = new UserService(userRepository);
+    }
+
+    @Test
+    public void getUserById() throws Exception {
+
+        User userTest = new User("Tom", "SuperTom");
+        userTest.setId(1L);
+
+        when(userRepository.findOne(1L)).thenReturn(userTest);
+        User newUser = userService.getUser(1L);
+
+        Long id = 1L;
+
+        assertEquals(id, newUser.getId());
+        assertEquals("Tom", newUser.getName());
     }
 
     @Test
@@ -37,7 +55,7 @@ public class UserServiceTest {
         List<User> userData = new ArrayList<>();
         userData.add(user1);
 
-        when(userService.getAllUsers()).thenReturn(userData);
+        when(userRepository.findAll()).thenReturn(userData);
         List<User> users = userService.getAllUsers();
 
         assertEquals(users.size(), 1);
@@ -48,9 +66,12 @@ public class UserServiceTest {
 
         when(userRepository.save(any(User.class))).thenThrow(RuntimeException.class);
 
-        User usertest = new User();
+        User userTest = new User();
 
-        userService.addUser(usertest);
+        userService.addUser(userTest);
+
+        verify(userRepository, times(1)).save(userTest);
+        verify(userRepository).save(any(User.class));
 
     }
 
@@ -63,8 +84,16 @@ public class UserServiceTest {
         assertThat(userService.addUserWithVerification(user1), is(notNullValue()));
     }
 
+    //verifying userService is asked to do deleteUserById()
     @Test
     public void deleteUserById() throws Exception {
+
+        User userTest = new User("Tom", "SuperTom");
+        userTest.setId(1L);
+
+        Long id = 1L;
+        userService.deleteUser(id);
+        verify(userService, times(1)).deleteUser(1L);
     }
 
 }
