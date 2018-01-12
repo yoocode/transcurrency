@@ -52,7 +52,6 @@ public class UserControllerTest {
         userList.add(user1);
         userList.add(user2);
 
-
         when(userService.getAllUsers()).thenReturn(userList);
 
         Long id_1 = 1L;
@@ -68,4 +67,18 @@ public class UserControllerTest {
         verify(userService, times(1)).getAllUsers();
     }
 
+    @Test
+    public void getUserById() throws Exception{
+        User user1 = new User("Tom", "superTom");
+        Long id = 1L;
+        user1.setId(id);
+        when(userService.getUser(user1.getId())).thenReturn(user1);
+        mockMvc.perform(get("/users/{id}", 1))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.name", is("Tom")))
+                .andExpect(jsonPath("$.username", is("superTom")));
+        verify(userService, times(1)).getUser(id);
+    }
 }
