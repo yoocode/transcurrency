@@ -17,7 +17,9 @@ public class User {
     private String username;
     private BigDecimal balance;
 
-    public User(){}
+    public User() {
+    }
+
 
     //set balance to zero when user instance is created
     public User(String name, String username) {
@@ -25,9 +27,14 @@ public class User {
     }
 
     public User(String name, String username, BigDecimal balance) {
+        this(null, name, username, balance);
+    }
+
+    public User(Long id, String name, String username, BigDecimal balance) {
         this.name = name;
         this.username = username;
         this.balance = balance;
+        this.id = id;
     }
 
     public Long getId() {

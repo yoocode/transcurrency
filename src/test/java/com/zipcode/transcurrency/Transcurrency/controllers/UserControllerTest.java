@@ -81,4 +81,12 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.username", is("superTom")));
         verify(userService, times(1)).getUser(id);
     }
+
+    @Test
+    public void addUserTest() {
+        User user1 = new User("Tom", "superTom");
+        Long id = 1L;
+        user1.setId(id);
+
+    }
 }

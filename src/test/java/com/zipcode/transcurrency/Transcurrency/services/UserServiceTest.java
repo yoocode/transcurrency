@@ -36,13 +36,16 @@ public class UserServiceTest {
     @Test
     public void getUserById() throws Exception {
 
-        User userTest = new User("Tom", "SuperTom");
-        userTest.setId(1L);
-
-        when(userRepository.findOne(1L)).thenReturn(userTest);
-        User newUser = userService.getUser(1L);
-
         Long id = 1L;
+        User userWithId = new User(1L, "Tom", "superTom", null);
+
+//        User userTest = new User("Tom", "SuperTom");
+//
+//        Long id = 1L;
+//        userTest.setId(id);
+
+        when(userRepository.findOne(id)).thenReturn(userWithId);
+        User newUser = userService.getUser(id);
 
         assertEquals(id, newUser.getId());
         assertEquals("Tom", newUser.getName());
