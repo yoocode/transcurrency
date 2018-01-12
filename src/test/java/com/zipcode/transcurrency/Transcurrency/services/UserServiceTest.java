@@ -84,16 +84,15 @@ public class UserServiceTest {
         assertThat(userService.addUserWithVerification(user1), is(notNullValue()));
     }
 
-    //verifying userService is asked to do deleteUserById()
+    //verifying userService is invoked to do deleteUserById()
     @Test
     public void deleteUserById() throws Exception {
 
-        User userTest = new User("Tom", "SuperTom");
-        userTest.setId(1L);
-
         Long id = 1L;
+        doNothing().when(userRepository).delete(1L);
         userService.deleteUser(id);
-        verify(userService, times(1)).deleteUser(1L);
+        verify(userRepository, times(1)).delete(1L);
+
     }
 
 }
