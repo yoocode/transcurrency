@@ -29,6 +29,14 @@ public class Transaction {
         this.id = id;
     }
 
+    public Transfer getTransfer() {
+        return transfer;
+    }
+
+    public void setTransfer(Transfer transfer) {
+        this.transfer = transfer;
+    }
+
 
     //    public void send(Long destinationId, Long sourceID, BigDecimal amount) {
 //

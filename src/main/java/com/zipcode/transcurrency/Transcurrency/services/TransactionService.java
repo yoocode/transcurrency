@@ -1,6 +1,7 @@
 package com.zipcode.transcurrency.Transcurrency.services;
 
 import com.zipcode.transcurrency.Transcurrency.com.zipcode.transcurrency.models.Transaction;
+import com.zipcode.transcurrency.Transcurrency.com.zipcode.transcurrency.models.Transfer;
 import com.zipcode.transcurrency.Transcurrency.repositories.TransactionRepository;
 import org.springframework.stereotype.Service;
 
@@ -35,11 +36,28 @@ public class TransactionService {
 
     }
 
+    public Transaction createTransaction() {
+
+        Transaction newTransaction = new Transaction();
+        return newTransaction;
+    }
+
     public void saveTransaction(Transaction transaction) {
 
-        if(transaction != null) {
-            transactionRepository.save(transaction);
+        if(transaction.getId() != null) {
+            transaction.setTransfer(new Transfer());
         }
 
+        transactionRepository.save(transaction);
+
     }
+
+    public void deleteTransaction(Long id) {
+
+        Transaction deleteTransaction = getTransactionById(id);
+        transactionRepository.delete(deleteTransaction);
+        
+    }
+
+
 }
