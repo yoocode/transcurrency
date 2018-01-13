@@ -54,9 +54,8 @@ public class TransactionService {
 
     public void deleteTransaction(Long id) {
 
-        Transaction deleteTransaction = getTransactionById(id);
-        transactionRepository.delete(deleteTransaction);
-        
+        transactionRepository.delete(id);
+
     }
 
 

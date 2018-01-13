@@ -81,6 +81,13 @@ public class TransactionServiceTests {
 
     @Test
     public void deleteTransactionTest() throws Exception {
+        Transaction transaction = new Transaction(1L);
+        Transaction secondTransaction = new Transaction(1L);
 
+        when(transactionRepository.getOne(1L)).thenReturn(secondTransaction);
+
+        transactionService.deleteTransaction(secondTransaction.getId());
+
+        verify(transactionRepository, times(1)).delete(secondTransaction);
     }
 }

@@ -17,6 +17,10 @@ public class Transaction {
 
     public Transaction(){}
 
+    public Transaction(Long id) {
+        this.id = id;
+    }
+
     public Transaction(Transfer transfer){
         this.transfer = transfer;
     }
